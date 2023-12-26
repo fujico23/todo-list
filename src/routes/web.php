@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//一覧ページ表示
+Route::get('/', [TodoController::class, 'index']);
+//HTTPリクエスト送信
+Route::post('/todos', [TodoController::class, 'store']);
+//更新
+Route::patch('/todos/update', [TodoController::class, 'update']);
+//削除
+Route::delete('/todos/delete', [TodoController::class, 'destroy']);
